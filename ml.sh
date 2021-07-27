@@ -18,8 +18,6 @@ fi
 Help()
 {
    # Display Help
-   echo "Add description of the script functions here."
-   echo
    echo "Syntax: ml.sh [option] [task number|task name]"
    echo "options:"
    echo "add|new|create     adds a new task to the mission log"
@@ -58,7 +56,7 @@ if ([ -z "$1" ]) || ([[ "$1" == "list" ]]) ;  then
       done < "$SCRIPT_DIR/complete"
   fi
   printf %s"\n\n"
-elif ( [[ "$1" == "add" ]] ) ; then
+elif ( [[ "$1" == "add" ]] || [[ "$1" == "new" ]] || [[ "$1" == "create" ]] ) ; then
   # create task
   NEWTASK="${@: 2}"
   echo "$NEWTASK" >> "$SCRIPT_DIR/todo"
