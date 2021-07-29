@@ -18,6 +18,7 @@
 	<img src="preview.gif"/>
 </p>
 ## privacy
+
 This application stores the data in local text files.  There are no analytics, no tracking tools, no cloud that it syncs with.
 
 There is a customizable sync in the roadmap, but it would be opt-in and you would configure your own database or sync system to support it.
