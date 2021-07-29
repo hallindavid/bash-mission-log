@@ -17,6 +17,7 @@
 <p align="center">
 	<img src="preview.gif"/>
 </p>
+
 ## privacy
 
 This application stores the data in local text files.  There are no analytics, no tracking tools, no cloud that it syncs with.
