@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://github.com/hallindavid/bash-mission-log"><img src="bash-mission-log.png" alt="bash-mission-log" height="200"></a>
+  <a href="https://github.com/hallindavid/bash-mission-log"><img src="bash-mission-log.png" alt="bash-mission-log" style="max-height:200px"></a>
   <br>
 </h1>
 
@@ -10,6 +10,7 @@
   <a href="#usage">usage</a> •
   <a href="#setup">setup</a> •
   <a href="#how-it-works">how it works</a> •
+  <a href="#roadmap">roadmap</a> •
   <a href="#license">license</a>
 </p>
 
@@ -19,7 +20,7 @@
 
 ## usage
 
-This is a seriously simple way of tracking your daily goals.  The examples laid out below are based on setting up ml as an alias
+This is a seriously simple way of tracking your daily goals.  The examples laid out below are based on setting up ml as an alias sudo apt install ghostwriter
 
 #### creation
 ```bash
@@ -134,6 +135,15 @@ This is probably already fairly obvious, but there is no interenet required, and
 
 <a href="https://www.buymeacoffee.com/tDbQ4kg" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: 41px !important;width: 174px !important;box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;-webkit-box-shadow: 0px 3px 2px 0px rgba(190, 190, 190, 0.5) !important;" ></a>
 
+
+## roadmap
+
+There are a few more features that I'd like to work on.
+
+#### Sync system
+At the moment, there is no sync/backup system.  There are a few ways I am thinking of implementing, but basically all of these ideas would be utilized through a new command set, which I'm thinking of as `ml sync push` and `ml sync pull` and would store the configuration options in a local configuration file, likely `~/.mission-log-config`
+- Remote database sync - this may be a re-write in Go, but you'd enter your database connection information into your configuration file, and then the sync would push/pull to and from that database.
+- Git storage - identify a different path for your files in your configuration.  This would allow you to have a separate git repository which can be private, which stores your mission-log.  Then the sync commands would basically just cd into the configured directory, and then try to call git pull or git commit && push.
 
 ## license
 
