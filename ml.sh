@@ -57,15 +57,34 @@ if ([ -z "$1" ]) || ([[ "$1" == "list" ]]) ;  then
   fi
   printf %s"\n\n"
 elif ( [[ "$1" == "add" ]] || [[ "$1" == "new" ]] || [[ "$1" == "create" ]] ) ; then
+  
+  if [ "$#" -lt 2 ]; then
+    echo "Please include the mission name.  eg. ml add|new|create test task"
+    exit 1
+  fi
+
   # create task
   NEWTASK="${@: 2}"
   echo "$NEWTASK" >> "$SCRIPT_DIR/todo"
   printf %s"New task added: $NEWTASK"
 
 elif [[ "$1" == "done" ]] || [[ "$1" == "complete" ]] ; then
+  
+  if [ "$#" -lt 2 ]; then
+    echo "Please include the mission number.  eg. ml done|complete 2"
+    exit 1
+  fi 
+
   # complete task
   TASKNO="$2"
+
+  if ! [[ "$TASKNO" =~ ^[0-9]+$ ]]; then
+    echo "Please use the line number to identify the task.  eg. ml done|complete 2"
+  fi
+
   TASKNAME="$(sed -n ${TASKNO}p $SCRIPT_DIR/todo)"
+
+
   
   printf %s"Now finishing task: $TASKNAME"
   #remove from todo
@@ -75,7 +94,19 @@ elif [[ "$1" == "done" ]] || [[ "$1" == "complete" ]] ; then
   echo "$TASKNAME" >> "$SCRIPT_DIR/complete"
 
 elif [[ "$1" == "delete" ]] || [[ "$1" == "remove" ]] ; then 
+  
+  if [ "$#" -lt 2 ]; then
+    echo "Please include the mission number.  eg. ml done|complete 2"
+    exit 1
+  fi 
+
   TASKNO="$2"
+
+
+  if ! [[ "$TASKNO" =~ ^[0-9]+$ ]]; then
+    echo "Please use the line number to identify the task.  eg. ml done|complete 2"
+  fi
+
   sed -i "${TASKNO}d" "$SCRIPT_DIR/todo"
 elif  [[ "$1" == "clean" ]] || [[ "$1" == "clear" ]]  ; then
 	# clear lists
