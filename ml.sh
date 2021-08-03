@@ -40,7 +40,10 @@ if ([ -z "$1" ]) || ([[ "$1" == "list" ]]) ;  then
   LINECOUNT="$(cat $SCRIPT_DIR/todo | wc -l)"
   if [ $LINECOUNT -gt "0" ] ; 
     then
-      while IFS= read -r line; do
+     i=1
+     while IFS= read -r line; do
+	printf '%s ' "$i"
+	((i++))
         printf '%s\n' " ⍻ $line"
       done < "$SCRIPT_DIR/todo"
     else
