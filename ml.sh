@@ -24,6 +24,7 @@ Help()
    echo "delete|remove      deletes task from mission log"
    echo "done|complete      marks a task as completed"
    echo "clear|clean        clears both the mission log, and the completed list"
+   echo "edit               opens vim to edit the todo log"
    echo
 }
 
@@ -83,8 +84,6 @@ elif [[ "$1" == "done" ]] || [[ "$1" == "complete" ]] ; then
   fi
 
   TASKNAME="$(sed -n ${TASKNO}p $SCRIPT_DIR/todo)"
-
-
   
   printf %s"Now finishing task: $TASKNAME"
   #remove from todo
@@ -108,6 +107,8 @@ elif [[ "$1" == "delete" ]] || [[ "$1" == "remove" ]] ; then
   fi
 
   sed -i "${TASKNO}d" "$SCRIPT_DIR/todo"
+elif [[ $1 == "edit" ]] ; then 
+  vim "$SCRIPT_DIR/todo"
 elif  [[ "$1" == "clean" ]] || [[ "$1" == "clear" ]]  ; then
 	# clear lists
   > "$SCRIPT_DIR/todo"
