@@ -24,6 +24,7 @@ Help()
    echo "delete|remove      deletes task from mission log"
    echo "done|complete      marks a task as completed"
    echo "clear|clean        clears both the mission log, and the completed list"
+   echo "                   optionally accepts todo or complete to clear a specific list"
    echo "edit               opens vim to edit the todo log"
    echo
 }
@@ -114,8 +115,14 @@ elif [[ $1 == "edit" ]] ; then
   vim "$SCRIPT_DIR/todo"
 elif  [[ "$1" == "clean" ]] || [[ "$1" == "clear" ]]  ; then
 	# clear lists
-  > "$SCRIPT_DIR/todo"
-  > "$SCRIPT_DIR/complete"
+  if [[ "$2" == "done" ]] || [[ "$2" == "complete" ]] ; then
+    > "$SCRIPT_DIR/complete"
+  elif [[ "$2" == "todo" ]] ; then
+    > "$SCRIPT_DIR/todo"
+  else
+    > "$SCRIPT_DIR/todo"
+    > "$SCRIPT_DIR/complete"
+  fi
 elif [[ "$1" == "help" ]] ; then 
   Help
 fi
