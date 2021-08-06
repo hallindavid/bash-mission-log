@@ -24,7 +24,6 @@ Help()
    echo "delete|remove      deletes task from mission log"
    echo "done|complete      marks a task as completed"
    echo "clear|clean        clears both the mission log, and the completed list"
-   echo "                   optionally accepts todo or complete to clear a specific list"
    echo "edit               opens vim to edit the todo log"
    echo
 }
@@ -43,7 +42,11 @@ if ([ -z "$1" ]) || ([[ "$1" == "list" ]]) ;  then
     then
      i=1
      while IFS= read -r line; do
-	printf '%s ' "$i"
+	if [ $i -lt 10 ] ; then
+	  printf "%s  " "$i"
+	else
+	  printf "%s " "$i"
+	fi
 	((i++))
         printf '%s\n' " ⍻ $line"
       done < "$SCRIPT_DIR/todo"
