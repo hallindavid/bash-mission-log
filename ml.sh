@@ -48,7 +48,7 @@ if ([ -z "$1" ]) || ([[ "$1" == "list" ]]) ;  then
 	  printf "%s " "$i"
 	fi
 	((i++))
-        printf '%s\n' " ⍻ $line"
+        printf '%s\n' " ☐ $line"
       done < "$SCRIPT_DIR/todo"
     else
       printf %s"no missions in log\n"
